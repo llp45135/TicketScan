@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using DevExpress.UserSkins;
-using DevExpress.Skins;
-using DevExpress.LookAndFeel;
+//using DevExpress.UserSkins;
+//using DevExpress.Skins;
+//using DevExpress.LookAndFeel;
 
 namespace TicketScan
 {
@@ -19,9 +19,9 @@ namespace TicketScan
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            BonusSkins.Register();
-            SkinManager.EnableFormSkins();
-            UserLookAndFeel.Default.SetSkinStyle("DevExpress Style");
+            //BonusSkins.Register();
+            //SkinManager.EnableFormSkins();
+            //UserLookAndFeel.Default.SetSkinStyle("DevExpress Style");
             Application.Run(new Form1());
         }
     }
