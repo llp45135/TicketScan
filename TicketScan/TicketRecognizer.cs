@@ -69,25 +69,38 @@ namespace TicketScan
             IList<Bitmap> codeImgs = new List<Bitmap>();
             Dictionary<int, Blob> codeImgDic = new Dictionary<int, Blob>();
 
-            int minX = 0 , minY = 0;
+            int averY = 0,count = 0 ,sumY = 0;
+
+            
+
             foreach (Blob b in blobs)
             {
                 if (b.Image.Height >= minHeight)
                 {
-                    if (b.Rectangle.X < minX) minX = b.Rectangle.X;
-                    if (b.Rectangle.Y < minY) minY = b.Rectangle.Y;
-                    codeImgDic.Add(b.Rectangle.X, b);
-                }else
-                {
-                    Console.WriteLine("  height=" + b.Image.Height + " width=" + b.Image.Width + "  X=" + b.Rectangle.X);
-                }
-            }
 
+
+                    codeImgDic.Add(b.Rectangle.X, b);
+                    //count++;
+                    //averY = (sumY+=b.Rectangle.Y) / count;
+                    //Console.WriteLine("abs= " + Math.Abs(averY - b.Rectangle.Y) + " averY=" + averY + "  Rectangle.Y = " + b.Rectangle.Y);
+                    //if (Math.Abs(averY - b.Rectangle.Y) < charHeight)
+                    //{
+                       
+                        
+
+                    //}
+
+                }
+             }
+
+            var rectYList = from o in codeImgDic.Values orderby o.Rectangle.Y select o;
+            int maxY = rectYList.Last().Rectangle.Y;
+            Console.WriteLine("MaxY = " + maxY);
 
             Bitmap bmp = new Bitmap(charWidth * 21 , charHeight + 4);
             Graphics g = Graphics.FromImage(bmp);
             g.FillRectangle(new SolidBrush(Color.Black), 0, 0, charWidth * 21 , charHeight + 4);
-            int offset = 0, preX = 0, preY = 0, x = 0, y = 0;
+            int offset = 0;
             var dicSort = from objDic in codeImgDic orderby objDic.Key select objDic;
             IList<KeyValuePair<int, Blob>> list = new List<KeyValuePair<int, Blob>>();
             list = dicSort.ToList<KeyValuePair<int, Blob>>();
@@ -98,19 +111,19 @@ namespace TicketScan
             {
                 KeyValuePair<int, Blob> kvp = list[i];
                 Blob blob = kvp.Value;
-                Crop c = new Crop(blob.Rectangle);
-                Bitmap b = c.Apply(tempBin);
-                PointF p = new PointF(offset, 2);
-                g.DrawImage(b, p);
-                offset += blob.Rectangle.Width;
+                if(Math.Abs(blob.Rectangle.Y - maxY) <= charHeight)
+                {
+                    Crop c = new Crop(blob.Rectangle);
+                    Bitmap b = c.Apply(tempBin);
+                    PointF p = new PointF(offset, 2);
+                    g.DrawImage(b, p);
+                    offset += blob.Rectangle.Width + 1;
+
+                }
             }
-
-
-
-
             g.Dispose();
-            //return commonSeq.Apply(bmp);
-            return bmp;
+            return commonSeq.Apply(bmp);
+            //return bmp;
         }
 
         /// <summary>

@@ -80,19 +80,17 @@
             // 
             // pictureBox_source
             // 
-            this.pictureBox_source.Location = new System.Drawing.Point(526, 12);
+            this.pictureBox_source.Location = new System.Drawing.Point(451, 10);
             this.pictureBox_source.Name = "pictureBox_source";
             this.pictureBox_source.Size = new System.Drawing.Size(439, 124);
-            this.pictureBox_source.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox_source.TabIndex = 0;
             this.pictureBox_source.TabStop = false;
             // 
             // pictureBox_work1
             // 
-            this.pictureBox_work1.Location = new System.Drawing.Point(526, 142);
+            this.pictureBox_work1.Location = new System.Drawing.Point(451, 122);
             this.pictureBox_work1.Name = "pictureBox_work1";
             this.pictureBox_work1.Size = new System.Drawing.Size(439, 110);
-            this.pictureBox_work1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox_work1.TabIndex = 1;
             this.pictureBox_work1.TabStop = false;
             // 
@@ -100,15 +98,15 @@
             // 
             this.label_result.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label_result.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_result.Location = new System.Drawing.Point(19, 133);
+            this.label_result.Location = new System.Drawing.Point(16, 114);
             this.label_result.Name = "label_result";
-            this.label_result.Size = new System.Drawing.Size(420, 37);
+            this.label_result.Size = new System.Drawing.Size(360, 32);
             this.label_result.TabIndex = 2;
             // 
             // pictureBox_slpit1
             // 
             this.pictureBox_slpit1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox_slpit1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox_slpit1.Location = new System.Drawing.Point(10, 10);
             this.pictureBox_slpit1.Name = "pictureBox_slpit1";
             this.pictureBox_slpit1.Size = new System.Drawing.Size(59, 50);
             this.pictureBox_slpit1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -118,7 +116,7 @@
             // pictureBox_slpit2
             // 
             this.pictureBox_slpit2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox_slpit2.Location = new System.Drawing.Point(77, 12);
+            this.pictureBox_slpit2.Location = new System.Drawing.Point(66, 10);
             this.pictureBox_slpit2.Name = "pictureBox_slpit2";
             this.pictureBox_slpit2.Size = new System.Drawing.Size(59, 50);
             this.pictureBox_slpit2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -128,7 +126,7 @@
             // pictureBox_slpit3
             // 
             this.pictureBox_slpit3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox_slpit3.Location = new System.Drawing.Point(142, 12);
+            this.pictureBox_slpit3.Location = new System.Drawing.Point(122, 10);
             this.pictureBox_slpit3.Name = "pictureBox_slpit3";
             this.pictureBox_slpit3.Size = new System.Drawing.Size(59, 50);
             this.pictureBox_slpit3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -138,7 +136,7 @@
             // pictureBox_slpit4
             // 
             this.pictureBox_slpit4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox_slpit4.Location = new System.Drawing.Point(207, 12);
+            this.pictureBox_slpit4.Location = new System.Drawing.Point(177, 10);
             this.pictureBox_slpit4.Name = "pictureBox_slpit4";
             this.pictureBox_slpit4.Size = new System.Drawing.Size(59, 50);
             this.pictureBox_slpit4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -148,7 +146,7 @@
             // pictureBox_slpit5
             // 
             this.pictureBox_slpit5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox_slpit5.Location = new System.Drawing.Point(272, 12);
+            this.pictureBox_slpit5.Location = new System.Drawing.Point(233, 10);
             this.pictureBox_slpit5.Name = "pictureBox_slpit5";
             this.pictureBox_slpit5.Size = new System.Drawing.Size(59, 50);
             this.pictureBox_slpit5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -158,7 +156,7 @@
             // pictureBox_slpit6
             // 
             this.pictureBox_slpit6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox_slpit6.Location = new System.Drawing.Point(337, 12);
+            this.pictureBox_slpit6.Location = new System.Drawing.Point(289, 10);
             this.pictureBox_slpit6.Name = "pictureBox_slpit6";
             this.pictureBox_slpit6.Size = new System.Drawing.Size(59, 50);
             this.pictureBox_slpit6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -168,7 +166,7 @@
             // pictureBox_slpit7
             // 
             this.pictureBox_slpit7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox_slpit7.Location = new System.Drawing.Point(402, 12);
+            this.pictureBox_slpit7.Location = new System.Drawing.Point(345, 10);
             this.pictureBox_slpit7.Name = "pictureBox_slpit7";
             this.pictureBox_slpit7.Size = new System.Drawing.Size(59, 50);
             this.pictureBox_slpit7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -177,19 +175,18 @@
             // 
             // pictureBox_work2
             // 
-            this.pictureBox_work2.Location = new System.Drawing.Point(526, 258);
+            this.pictureBox_work2.Location = new System.Drawing.Point(451, 221);
             this.pictureBox_work2.Name = "pictureBox_work2";
             this.pictureBox_work2.Size = new System.Drawing.Size(439, 114);
-            this.pictureBox_work2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox_work2.TabIndex = 10;
             this.pictureBox_work2.TabStop = false;
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(19, 201);
+            this.button1.Location = new System.Drawing.Point(16, 172);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(88, 37);
+            this.button1.Size = new System.Drawing.Size(75, 32);
             this.button1.TabIndex = 11;
             this.button1.Text = "读取";
             this.button1.UseVisualStyleBackColor = true;
@@ -198,9 +195,9 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(113, 201);
+            this.button2.Location = new System.Drawing.Point(97, 172);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(88, 37);
+            this.button2.Size = new System.Drawing.Size(75, 32);
             this.button2.TabIndex = 12;
             this.button2.Text = "1 灰   度";
             this.button2.UseVisualStyleBackColor = true;
@@ -209,9 +206,9 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(19, 289);
+            this.button3.Location = new System.Drawing.Point(16, 248);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(88, 37);
+            this.button3.Size = new System.Drawing.Size(75, 32);
             this.button3.TabIndex = 13;
             this.button3.Text = "4 二值化";
             this.button3.UseVisualStyleBackColor = true;
@@ -220,9 +217,9 @@
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(113, 289);
+            this.button4.Location = new System.Drawing.Point(97, 248);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(88, 37);
+            this.button4.Size = new System.Drawing.Size(75, 32);
             this.button4.TabIndex = 14;
             this.button4.Text = "5 分   割";
             this.button4.UseVisualStyleBackColor = true;
@@ -231,9 +228,9 @@
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(19, 332);
+            this.button5.Location = new System.Drawing.Point(16, 285);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(88, 37);
+            this.button5.Size = new System.Drawing.Size(75, 32);
             this.button5.TabIndex = 15;
             this.button5.Text = "识别票号";
             this.button5.UseVisualStyleBackColor = true;
@@ -242,9 +239,9 @@
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(19, 244);
+            this.button6.Location = new System.Drawing.Point(16, 209);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(88, 37);
+            this.button6.Size = new System.Drawing.Size(75, 32);
             this.button6.TabIndex = 16;
             this.button6.Text = "截21位码";
             this.button6.UseVisualStyleBackColor = true;
@@ -253,9 +250,9 @@
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(113, 244);
+            this.button7.Location = new System.Drawing.Point(97, 209);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(88, 37);
+            this.button7.Size = new System.Drawing.Size(75, 32);
             this.button7.TabIndex = 17;
             this.button7.Text = "截二维码";
             this.button7.UseVisualStyleBackColor = true;
@@ -263,19 +260,18 @@
             // 
             // pictureBox_work3
             // 
-            this.pictureBox_work3.Location = new System.Drawing.Point(526, 378);
+            this.pictureBox_work3.Location = new System.Drawing.Point(451, 324);
             this.pictureBox_work3.Name = "pictureBox_work3";
             this.pictureBox_work3.Size = new System.Drawing.Size(439, 114);
-            this.pictureBox_work3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox_work3.TabIndex = 18;
             this.pictureBox_work3.TabStop = false;
             // 
             // button8
             // 
             this.button8.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.Location = new System.Drawing.Point(19, 375);
+            this.button8.Location = new System.Drawing.Point(16, 321);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(88, 37);
+            this.button8.Size = new System.Drawing.Size(75, 32);
             this.button8.TabIndex = 19;
             this.button8.Text = "连续执行";
             this.button8.UseVisualStyleBackColor = true;
@@ -284,9 +280,9 @@
             // button9
             // 
             this.button9.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.Location = new System.Drawing.Point(19, 418);
+            this.button9.Location = new System.Drawing.Point(16, 358);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(182, 37);
+            this.button9.Size = new System.Drawing.Size(156, 32);
             this.button9.TabIndex = 27;
             this.button9.Text = "保存字模";
             this.button9.UseVisualStyleBackColor = true;
@@ -300,9 +296,9 @@
             // button10
             // 
             this.button10.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button10.Location = new System.Drawing.Point(113, 375);
+            this.button10.Location = new System.Drawing.Point(97, 321);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(88, 37);
+            this.button10.Size = new System.Drawing.Size(75, 32);
             this.button10.TabIndex = 28;
             this.button10.Text = "循环执行";
             this.button10.UseVisualStyleBackColor = true;
@@ -311,9 +307,9 @@
             // button11
             // 
             this.button11.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button11.Location = new System.Drawing.Point(229, 201);
+            this.button11.Location = new System.Drawing.Point(196, 172);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(102, 37);
+            this.button11.Size = new System.Drawing.Size(87, 32);
             this.button11.TabIndex = 29;
             this.button11.Text = "去除底色";
             this.button11.UseVisualStyleBackColor = true;
@@ -322,9 +318,9 @@
             // button12
             // 
             this.button12.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button12.Location = new System.Drawing.Point(229, 289);
+            this.button12.Location = new System.Drawing.Point(196, 248);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(102, 37);
+            this.button12.Size = new System.Drawing.Size(87, 32);
             this.button12.TabIndex = 30;
             this.button12.Text = "提取21位码";
             this.button12.UseVisualStyleBackColor = true;
@@ -332,7 +328,7 @@
             // 
             // pictureBox_ticket
             // 
-            this.pictureBox_ticket.Location = new System.Drawing.Point(1000, 28);
+            this.pictureBox_ticket.Location = new System.Drawing.Point(1096, 3);
             this.pictureBox_ticket.Name = "pictureBox_ticket";
             this.pictureBox_ticket.Size = new System.Drawing.Size(469, 314);
             this.pictureBox_ticket.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -341,26 +337,27 @@
             // 
             // pictureBox_code
             // 
-            this.pictureBox_code.Location = new System.Drawing.Point(19, 478);
+            this.pictureBox_code.Location = new System.Drawing.Point(16, 410);
             this.pictureBox_code.Name = "pictureBox_code";
-            this.pictureBox_code.Size = new System.Drawing.Size(438, 60);
+            this.pictureBox_code.Size = new System.Drawing.Size(375, 51);
+            this.pictureBox_code.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox_code.TabIndex = 32;
             this.pictureBox_code.TabStop = false;
             // 
             // flowLayoutPanel_codeimgs
             // 
             this.flowLayoutPanel_codeimgs.AutoScroll = true;
-            this.flowLayoutPanel_codeimgs.Location = new System.Drawing.Point(19, 557);
+            this.flowLayoutPanel_codeimgs.Location = new System.Drawing.Point(16, 477);
             this.flowLayoutPanel_codeimgs.Name = "flowLayoutPanel_codeimgs";
-            this.flowLayoutPanel_codeimgs.Size = new System.Drawing.Size(1401, 180);
+            this.flowLayoutPanel_codeimgs.Size = new System.Drawing.Size(1201, 154);
             this.flowLayoutPanel_codeimgs.TabIndex = 33;
             // 
             // button13
             // 
             this.button13.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button13.Location = new System.Drawing.Point(113, 332);
+            this.button13.Location = new System.Drawing.Point(97, 285);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(88, 37);
+            this.button13.Size = new System.Drawing.Size(75, 32);
             this.button13.TabIndex = 34;
             this.button13.Text = "识别21位码";
             this.button13.UseVisualStyleBackColor = true;
@@ -371,9 +368,9 @@
             this.radioButton1.AutoSize = true;
             this.radioButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.radioButton1.ForeColor = System.Drawing.Color.White;
-            this.radioButton1.Location = new System.Drawing.Point(83, 182);
+            this.radioButton1.Location = new System.Drawing.Point(71, 156);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(47, 18);
+            this.radioButton1.Size = new System.Drawing.Size(41, 16);
             this.radioButton1.TabIndex = 35;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "RED";
@@ -385,9 +382,9 @@
             this.radioButton2.AutoSize = true;
             this.radioButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.radioButton2.ForeColor = System.Drawing.Color.White;
-            this.radioButton2.Location = new System.Drawing.Point(24, 182);
+            this.radioButton2.Location = new System.Drawing.Point(21, 156);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(53, 18);
+            this.radioButton2.Size = new System.Drawing.Size(47, 16);
             this.radioButton2.TabIndex = 36;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "BLUE";
@@ -397,9 +394,9 @@
             // button14
             // 
             this.button14.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button14.Location = new System.Drawing.Point(229, 246);
+            this.button14.Location = new System.Drawing.Point(196, 211);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(133, 37);
+            this.button14.Size = new System.Drawing.Size(114, 32);
             this.button14.TabIndex = 37;
             this.button14.Text = "截取21位码图像";
             this.button14.UseVisualStyleBackColor = true;
@@ -408,9 +405,9 @@
             // button15
             // 
             this.button15.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button15.Location = new System.Drawing.Point(229, 335);
+            this.button15.Location = new System.Drawing.Point(196, 287);
             this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(184, 37);
+            this.button15.Size = new System.Drawing.Size(158, 32);
             this.button15.TabIndex = 38;
             this.button15.Text = "识别21位码（行）";
             this.button15.UseVisualStyleBackColor = true;
@@ -418,17 +415,17 @@
             // 
             // pictureBox_QRCode
             // 
-            this.pictureBox_QRCode.Location = new System.Drawing.Point(526, 12);
+            this.pictureBox_QRCode.Location = new System.Drawing.Point(451, 10);
             this.pictureBox_QRCode.Name = "pictureBox_QRCode";
-            this.pictureBox_QRCode.Size = new System.Drawing.Size(237, 177);
+            this.pictureBox_QRCode.Size = new System.Drawing.Size(203, 152);
             this.pictureBox_QRCode.TabIndex = 39;
             this.pictureBox_QRCode.TabStop = false;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1528, 770);
+            this.ClientSize = new System.Drawing.Size(1577, 660);
             this.Controls.Add(this.pictureBox_QRCode);
             this.Controls.Add(this.button15);
             this.Controls.Add(this.button14);
