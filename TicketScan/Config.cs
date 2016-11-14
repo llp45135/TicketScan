@@ -20,13 +20,17 @@ namespace TicketScan
 
 
         public static double BLUE_CODE_X_CORP_RATIO = 55.0 / BLUE_TICKET_WIDTH;
-        public static double BLUE_CODE_Y_CORP_RATIO = 395.0 / BLUE_TICKET_HEIGHT;
+        public static double BLUE_CODE_Y_CORP_RATIO = 460.0 / BLUE_TICKET_HEIGHT;
         public static double BLUE_CODE_W_CORP_RATIO = 308.0 / BLUE_TICKET_WIDTH;
-        public static double BLUE_CODE_H_CORP_RATIO = 40.0 / BLUE_TICKET_HEIGHT;
+        public static double BLUE_CODE_H_CORP_RATIO = 80.0 / BLUE_TICKET_HEIGHT;
         public static double BLUE_CODE_NUM_WIDTH_RATIO = 12.0 / BLUE_TICKET_WIDTH;
         public static double BLUE_CODE_CHAR_WIDTH_RATIO = 14.0 / BLUE_TICKET_WIDTH;
         public static double BLUE_CODE_CHAR_HEIGHT_RATIO = 24.0 / BLUE_TICKET_HEIGHT;
         public static double BLUE_CODE_CHAR_OFFSET_RATIO = 3.0 / BLUE_TICKET_WIDTH;
+        public static double BLUE_QRCODE_X_COPR_RATIO = 580.0 / BLUE_TICKET_WIDTH;
+        public static double BLUE_QRCODE_Y_COPR_RATIO = 255.0 / BLUE_TICKET_HEIGHT;
+        public static double BLUE_QRCODE_W_COPR_RATIO = 150.0 / BLUE_TICKET_WIDTH;
+        public static double BLUE_QRCODE_H_COPR_RATIO = 150.0 / BLUE_TICKET_HEIGHT;
 
 
         public static int RED_TICKET_WIDTH = 710;
@@ -39,6 +43,10 @@ namespace TicketScan
         public static double RED_CODE_CHAR_WIDTH_RATIO = 15.0 / RED_TICKET_WIDTH;
         public static double RED_CODE_CHAR_HEIGHT_RATIO = 25.0 / RED_TICKET_HEIGHT;
         public static double RED_CODE_CHAR_OFFSET_RATIO = 9.0 / RED_TICKET_WIDTH;
+        public static double RED_QRCODE_X_COPR_RATIO = 490.0 / RED_TICKET_WIDTH;
+        public static double RED_QRCODE_Y_COPR_RATIO = 270.0 / RED_TICKET_HEIGHT;
+        public static double RED_QRCODE_W_COPR_RATIO = 150.0 / RED_TICKET_WIDTH;
+        public static double RED_QRCODE_H_COPR_RATIO = 150.0 / RED_TICKET_HEIGHT;
 
 
 
@@ -47,7 +55,7 @@ namespace TicketScan
 
         public static int CODE_OFFSET = 4;
 
-        public static int QRCODE_WIDTH = 150, QRCODE_HIGHT = 150;
+        public static int QRCODE_WIDTH = 100, QRCODE_HIGHT = 100;
 
     }
 }

@@ -14,18 +14,21 @@ namespace TicketScan
 {
     public class TicketRecognizer
     {
-        private FiltersSequence commonSeq,extractCodeSeq;                          //Commonly filter sequence to be used 
+        private FiltersSequence commonSeq, extractCodeSeq, extractQRCodeSeq;                          //Commonly filter sequence to be used 
 
         public TicketRecognizer()
         {
             commonSeq = new FiltersSequence();
             extractCodeSeq = new FiltersSequence();
+            extractQRCodeSeq = new FiltersSequence();
             commonSeq.Add(new GrayscaleBT709());                            //灰度化
             commonSeq.Add(new SISThreshold());                              //二值化
             commonSeq.Add(new Invert());
-            extractCodeSeq.Add(new Mean());                              //均值滤波
+            extractCodeSeq.Add(new Mean());                                 //均值滤波
             //extractCodeSeq.Add(new Invert());                            //黑白翻转
-
+            extractQRCodeSeq.Add(new GrayscaleBT709());
+            extractQRCodeSeq.Add(new SISThreshold());
+            extractQRCodeSeq.Add(new DifferenceEdgeDetector());
         }
 
 
@@ -126,7 +129,7 @@ namespace TicketScan
                 int topY = Convert.ToInt16(temp.Height * Config.BLUE_CODE_Y_CORP_RATIO);
                 int w = Convert.ToInt16(temp.Width * Config.BLUE_CODE_W_CORP_RATIO);
                 int h = Convert.ToInt16(temp.Height * Config.BLUE_CODE_H_CORP_RATIO);
-                Rectangle rect = new Rectangle(leftX, topY, w, h);
+                Rectangle rect = new Rectangle(leftX, topY -h, w, h);
                 Crop corp = new Crop(rect);
                 retImg = corp.Apply(temp);
             }
@@ -136,13 +139,107 @@ namespace TicketScan
                 int topY = Convert.ToInt16(temp.Height * Config.RED_CODE_Y_CORP_RATIO);
                 int w = Convert.ToInt16(temp.Width * Config.RED_CODE_W_CORP_RATIO);
                 int h = Convert.ToInt16(temp.Height * Config.RED_CODE_H_CORP_RATIO);
-                Rectangle rect = new Rectangle(leftX, topY - h, w, h);
+                Rectangle rect = new Rectangle(leftX, topY -h , w, h);
                 Crop corp = new Crop(rect);
                 retImg = corp.Apply(temp);
             }
             return retImg.Clone(new Rectangle(0, 0, retImg.Width, retImg.Height), PixelFormat.Format24bppRgb);
         }
 
+
+        /// <summary>
+        /// 截取二维码区域
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="ticketType"></param>
+        /// <returns></returns>
+        public Bitmap ExtractQRCodeImage(Bitmap source, int ticketType)
+        {
+            Bitmap temp = (Bitmap)source.Clone();
+            Bitmap retImg = null;
+            if (Config.BLUE_TICKET == ticketType)
+            {
+                int leftX = Convert.ToInt16(temp.Width * Config.BLUE_QRCODE_X_COPR_RATIO);
+                int topY = Convert.ToInt16(temp.Height * Config.BLUE_QRCODE_Y_COPR_RATIO);
+                int w = Convert.ToInt16(temp.Width * Config.BLUE_QRCODE_W_COPR_RATIO);
+                int h = Convert.ToInt16(temp.Height * Config.BLUE_QRCODE_H_COPR_RATIO);
+                Rectangle rect = new Rectangle(leftX, topY, w, h);
+                Crop corp = new Crop(rect);
+                retImg = corp.Apply(temp);
+            }
+            else
+            {
+                int leftX = Convert.ToInt16(temp.Width * Config.RED_QRCODE_X_COPR_RATIO);
+                int topY = Convert.ToInt16(temp.Height * Config.RED_QRCODE_Y_COPR_RATIO);
+                int w = Convert.ToInt16(temp.Width * Config.RED_QRCODE_W_COPR_RATIO);
+                int h = Convert.ToInt16(temp.Height * Config.RED_QRCODE_H_COPR_RATIO);
+                Rectangle rect = new Rectangle(leftX, topY, w, h);
+                Crop corp = new Crop(rect);
+                retImg = corp.Apply(temp);
+            }
+            return  retImg.Clone(new Rectangle(0, 0, retImg.Width, retImg.Height), PixelFormat.Format24bppRgb);
+
+        }
+
+
+
+        /// <summary>
+        /// 检测是否存在二维码区域
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public bool IsExistQRCode(Bitmap source,int ticketType)
+        {
+            bool isQRCode = false;
+
+            int qrCodeW = 0, qrCodeH = 0;
+            if (Config.BLUE_TICKET == ticketType)
+            {
+                qrCodeW = Convert.ToInt16(Config.BLUE_QRCODE_W_COPR_RATIO * Config.BLUE_TICKET_WIDTH);
+                qrCodeH = Convert.ToInt16(Config.BLUE_QRCODE_H_COPR_RATIO * Config.BLUE_TICKET_HEIGHT);
+            }
+            else
+            {
+                qrCodeW = Convert.ToInt16(Config.RED_QRCODE_W_COPR_RATIO * Config.RED_TICKET_WIDTH);
+                qrCodeH = Convert.ToInt16(Config.RED_QRCODE_H_COPR_RATIO * Config.RED_TICKET_HEIGHT);
+
+            }
+            Bitmap temp = extractQRCodeSeq.Apply(source);
+            BlobCounter blobCounter = new BlobCounter(temp); //把图片上的联通物体都分离开来
+            Blob[] blobs = blobCounter.GetObjects(temp, false);
+
+            foreach (Blob b in blobs)
+            {
+                if (b.Image.Height >= qrCodeH*0.7 && b.Image.Width >= qrCodeW*0.7)
+                    isQRCode = true;
+            }
+
+            return isQRCode;
+
+        }
+
+
+
+        public Bitmap DetectQRCode(Bitmap source, int ticketType)
+        {
+
+            Bitmap temp = ExtractQRCodeImage(source, ticketType);
+            
+            if (IsExistQRCode(temp, ticketType))
+            {
+                return temp;
+            }
+            else
+            {
+                source.RotateFlip(RotateFlipType.Rotate180FlipX);
+                Bitmap temp1 = ExtractQRCodeImage(source, ticketType);
+                if(IsExistQRCode(temp1, ticketType))
+                {
+                    return temp1;
+                }
+            }
+            return null;
+        }
 
 
         public Bitmap Prepare(Bitmap source)

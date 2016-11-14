@@ -80,29 +80,6 @@ namespace TicketScan
 
             
 
-            exteactTicketCodeImg = ticketRecognizer.ExtractTicketCodeImage(bmpTicket, ticketType);
-            //exteactTicketCodeImg = ticketRecognizer.Prepare(exteactTicketCodeImg);
-
-            //if (pictureBox_source.Image != null)
-            //{
-            //    pictureBox_source.Image.Dispose();
-            //    pictureBox_source.Image = null;
-            //    pictureBox_source.Image = exteactTicketNoImg;
-            //}else
-            //{
-            //    pictureBox_source.Image = exteactTicketNoImg;
-            //}
-            bmpWork = exteactTicketCodeImg;
-            if (pictureBox_code.Image != null)
-            {
-                pictureBox_code.Image.Dispose();
-                pictureBox_code.Image = null;
-                pictureBox_code.Image = bmpWork;
-            }
-            else
-            {
-                pictureBox_code.Image = bmpWork;
-            }
 
 
 
@@ -189,16 +166,44 @@ namespace TicketScan
 
         private void button6_Click(object sender, EventArgs e)
         {
-            if (bmpWork == null)
-                bmpWork = exteactTicketNoImg.Clone(new Rectangle(0, 0, exteactTicketNoImg.Width, exteactTicketNoImg.Height), PixelFormat.Format24bppRgb);
-            ImageProcess.FilterBackground(bmpWork);
-            pictureBox_work1.Image = bmpWork;
+            exteactTicketCodeImg = ticketRecognizer.ExtractTicketCodeImage(bmpTicket, ticketType);
+            bmpWork = exteactTicketCodeImg;
+            if (pictureBox_code.Image != null)
+            {
+                pictureBox_code.Image.Dispose();
+                pictureBox_code.Image = null;
+                pictureBox_code.Image = bmpWork;
+            }
+            else
+            {
+                pictureBox_code.Image = bmpWork;
+            }
+
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            ImageProcess.FilterDisturb(bmpWork);
-            pictureBox_work2.Image = bmpWork;
+            //Bitmap qrCode = ticketRecognizer.DetectQRCode(bmpTicket,ticketType);
+            //if(qrCode != null) pictureBox_QRCode.Image = qrCode;
+
+
+            Bitmap temp = ticketRecognizer.ExtractQRCodeImage(bmpTicket, ticketType);
+
+            if (ticketRecognizer.IsExistQRCode(temp, ticketType))
+            {
+                pictureBox_QRCode.Image = temp;
+            }
+            else
+            {
+                bmpTicket.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                pictureBox_ticket.Image = bmpTicket;
+                Bitmap temp1 = ticketRecognizer.ExtractQRCodeImage(bmpTicket, ticketType);
+                if (ticketRecognizer.IsExistQRCode(temp1, ticketType))
+                {
+                    pictureBox_QRCode.Image = temp1;
+                }
+            }
+
         }
 
         private void button8_Click(object sender, EventArgs e)

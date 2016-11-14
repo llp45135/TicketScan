@@ -61,6 +61,7 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.button14 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
+            this.pictureBox_QRCode = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_source)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_work1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_slpit1)).BeginInit();
@@ -74,6 +75,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_work3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ticket)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_code)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_QRCode)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox_source
@@ -244,7 +246,7 @@
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(88, 37);
             this.button6.TabIndex = 16;
-            this.button6.Text = "2 去背景";
+            this.button6.Text = "截21位码";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
@@ -255,7 +257,7 @@
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(88, 37);
             this.button7.TabIndex = 17;
-            this.button7.Text = "3 去干扰";
+            this.button7.Text = "截二维码";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
@@ -414,11 +416,20 @@
             this.button15.UseVisualStyleBackColor = true;
             this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
+            // pictureBox_QRCode
+            // 
+            this.pictureBox_QRCode.Location = new System.Drawing.Point(526, 12);
+            this.pictureBox_QRCode.Name = "pictureBox_QRCode";
+            this.pictureBox_QRCode.Size = new System.Drawing.Size(237, 177);
+            this.pictureBox_QRCode.TabIndex = 39;
+            this.pictureBox_QRCode.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1528, 770);
+            this.Controls.Add(this.pictureBox_QRCode);
             this.Controls.Add(this.button15);
             this.Controls.Add(this.button14);
             this.Controls.Add(this.radioButton2);
@@ -466,6 +477,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_work3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ticket)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_code)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_QRCode)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -506,6 +518,7 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.PictureBox pictureBox_QRCode;
     }
 }
 
