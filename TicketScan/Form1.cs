@@ -32,10 +32,7 @@ namespace TicketScan
 
         private void button1_Click(object sender, EventArgs e)
         {
-
             openFileDialog.ShowDialog();
-
-
         }
 
         private void openFileDialog_FileOk(object sender, CancelEventArgs e)
