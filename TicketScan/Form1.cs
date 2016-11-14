@@ -14,7 +14,7 @@ using Tesseract;
 
 namespace TicketScan
 {
-    public partial class Form1 : DevExpress.XtraEditors.XtraForm
+    public partial class Form1 : Form
     {
         public Form1()
         {
