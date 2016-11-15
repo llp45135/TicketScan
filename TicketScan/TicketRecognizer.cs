@@ -77,19 +77,7 @@ namespace TicketScan
             {
                 if (b.Image.Height >= minHeight)
                 {
-
-
                     codeImgDic.Add(b.Rectangle.X, b);
-                    //count++;
-                    //averY = (sumY+=b.Rectangle.Y) / count;
-                    //Console.WriteLine("abs= " + Math.Abs(averY - b.Rectangle.Y) + " averY=" + averY + "  Rectangle.Y = " + b.Rectangle.Y);
-                    //if (Math.Abs(averY - b.Rectangle.Y) < charHeight)
-                    //{
-                       
-                        
-
-                    //}
-
                 }
              }
 
