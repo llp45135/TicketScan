@@ -69,9 +69,6 @@ namespace TicketScan
             IList<Bitmap> codeImgs = new List<Bitmap>();
             Dictionary<int, Blob> codeImgDic = new Dictionary<int, Blob>();
 
-            int averY = 0,count = 0 ,sumY = 0;
-
-            
 
             foreach (Blob b in blobs)
             {
@@ -79,27 +76,49 @@ namespace TicketScan
                 {
                     codeImgDic.Add(b.Rectangle.X, b);
                 }
-             }
+            }
 
             var rectYList = from o in codeImgDic.Values orderby o.Rectangle.Y select o;
             int maxY = rectYList.Last().Rectangle.Y;
-            Console.WriteLine("MaxY = " + maxY);
 
-            Bitmap bmp = new Bitmap(charWidth * 21 , charHeight + 4);
+            Bitmap bmp = new Bitmap(charWidth * 21, charHeight + 4);
             Graphics g = Graphics.FromImage(bmp);
-            g.FillRectangle(new SolidBrush(Color.Black), 0, 0, charWidth * 21 , charHeight + 4);
+            g.FillRectangle(new SolidBrush(Color.Black), 0, 0, charWidth * 21, charHeight + 4);
             int offset = 0;
-            var dicSort = from objDic in codeImgDic orderby objDic.Key select objDic;
-            IList<KeyValuePair<int, Blob>> list = new List<KeyValuePair<int, Blob>>();
-            list = dicSort.ToList<KeyValuePair<int, Blob>>();
 
+            IList<KeyValuePair<int, Blob>> list = new List<KeyValuePair<int, Blob>>();
+            var dicFilter = from objDic in codeImgDic where Math.Abs(objDic.Value.Rectangle.Y - maxY) <= charHeight orderby objDic.Key select objDic;
+            list = dicFilter.ToList<KeyValuePair<int, Blob>>();
 
 
             for (int i = 0; i < list.Count; i++)
             {
                 KeyValuePair<int, Blob> kvp = list[i];
                 Blob blob = kvp.Value;
-                if(Math.Abs(blob.Rectangle.Y - maxY) <= charHeight)
+
+
+
+                if (i > 0)
+                {
+                    KeyValuePair<int, Blob> preKvp = list[i - 1];
+                    Blob preBlob = preKvp.Value;
+                    if (Math.Abs(blob.Rectangle.X - preBlob.Rectangle.X - preBlob.Rectangle.Width) <= charWidth)
+                    {
+                        Crop c = new Crop(blob.Rectangle);
+                        Bitmap b = c.Apply(tempBin);
+                        PointF p = new PointF(offset, 2);
+                        g.DrawImage(b, p);
+                        offset += blob.Rectangle.Width + 1;
+                    }
+                    else
+                    {
+                        Bitmap b = blob.Image.ToManagedImage();
+                        Bitmap pb = preBlob.Image.ToManagedImage();
+
+                        Console.WriteLine(Math.Abs(blob.Rectangle.X - preBlob.Rectangle.X - preBlob.Rectangle.Width));
+
+                    }
+                }else
                 {
                     Crop c = new Crop(blob.Rectangle);
                     Bitmap b = c.Apply(tempBin);
@@ -130,7 +149,7 @@ namespace TicketScan
                 int topY = Convert.ToInt16(temp.Height * Config.BLUE_CODE_Y_CORP_RATIO);
                 int w = Convert.ToInt16(temp.Width * Config.BLUE_CODE_W_CORP_RATIO);
                 int h = Convert.ToInt16(temp.Height * Config.BLUE_CODE_H_CORP_RATIO);
-                Rectangle rect = new Rectangle(leftX, topY -h, w, h);
+                Rectangle rect = new Rectangle(leftX, topY - h, w, h);
                 Crop corp = new Crop(rect);
                 retImg = corp.Apply(temp);
             }
@@ -140,7 +159,7 @@ namespace TicketScan
                 int topY = Convert.ToInt16(temp.Height * Config.RED_CODE_Y_CORP_RATIO);
                 int w = Convert.ToInt16(temp.Width * Config.RED_CODE_W_CORP_RATIO);
                 int h = Convert.ToInt16(temp.Height * Config.RED_CODE_H_CORP_RATIO);
-                Rectangle rect = new Rectangle(leftX, topY -h , w, h);
+                Rectangle rect = new Rectangle(leftX, topY - h, w, h);
                 Crop corp = new Crop(rect);
                 retImg = corp.Apply(temp);
             }
@@ -178,7 +197,7 @@ namespace TicketScan
                 Crop corp = new Crop(rect);
                 retImg = corp.Apply(temp);
             }
-            return  retImg.Clone(new Rectangle(0, 0, retImg.Width, retImg.Height), PixelFormat.Format24bppRgb);
+            return retImg.Clone(new Rectangle(0, 0, retImg.Width, retImg.Height), PixelFormat.Format24bppRgb);
 
         }
 
@@ -189,7 +208,7 @@ namespace TicketScan
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
-        public bool IsExistQRCode(Bitmap source,int ticketType)
+        public bool IsExistQRCode(Bitmap source, int ticketType)
         {
             bool isQRCode = false;
 
@@ -211,7 +230,7 @@ namespace TicketScan
 
             foreach (Blob b in blobs)
             {
-                if (b.Image.Height >= qrCodeH*0.7 && b.Image.Width >= qrCodeW*0.7)
+                if (b.Image.Height >= qrCodeH * 0.7 && b.Image.Width >= qrCodeW * 0.7)
                     isQRCode = true;
             }
 
@@ -225,7 +244,7 @@ namespace TicketScan
         {
 
             Bitmap temp = ExtractQRCodeImage(source, ticketType);
-            
+
             if (IsExistQRCode(temp, ticketType))
             {
                 return temp;
@@ -234,7 +253,7 @@ namespace TicketScan
             {
                 source.RotateFlip(RotateFlipType.Rotate180FlipX);
                 Bitmap temp1 = ExtractQRCodeImage(source, ticketType);
-                if(IsExistQRCode(temp1, ticketType))
+                if (IsExistQRCode(temp1, ticketType))
                 {
                     return temp1;
                 }
