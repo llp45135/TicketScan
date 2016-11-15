@@ -254,13 +254,19 @@ namespace TicketScan
                 DirectoryInfo df = Directory.CreateDirectory(path);
                 Bitmap b = bmpWork.Clone(new Rectangle(0, 0, bmpWork.Width, bmpWork.Height), PixelFormat.Format1bppIndexed);
 
-                bmpWork.Save(path + "\\" + currentTime.Ticks.ToString() + ".tif", System.Drawing.Imaging.ImageFormat.Tiff);
-                
+                //b.Save(path + "\\" + currentTime.Ticks.ToString() + ".tif");
+
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.InitialDirectory = path;
+                saveFileDialog1.Filter = "*.tif|*.tif";
+                saveFileDialog1.Title = "保存图像";
+                saveFileDialog1.ShowDialog();
+                if (saveFileDialog1.FileName != "")
+                {
+                    string temp = saveFileDialog1.FileName;
+                    b.Save(temp, System.Drawing.Imaging.ImageFormat.Tiff);
+                }
             }
-
-
- 
-
         }
 
         /// <summary>
