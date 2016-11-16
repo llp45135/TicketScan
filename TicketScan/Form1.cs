@@ -26,6 +26,7 @@ namespace TicketScan
         private Bitmap exteactTicketCodeImg;
         private Bitmap bmpWork;
         private Bitmap bmpTicket;
+        private Bitmap bmpQRCode;
         int ticketType = 0;
 
         private TicketRecognizer ticketRecognizer = new TicketRecognizer();
@@ -66,19 +67,27 @@ namespace TicketScan
 
             }
 
-            if (pictureBox_ticket.Image != null)
+
+            var result = ticketRecognizer.Prepare(bmpTicket, ticketType);
+
+            bmpQRCode = result.Item2;
+            bmpWork = result.Item3;
+            bmpTicket = result.Item4;
+
+            if (result.Item1 == Config.Is_Detected_QRCode)
             {
-                pictureBox_ticket.Image.Dispose();
-                pictureBox_ticket.Image = null;
-                pictureBox_ticket.Image = bmpTicket;
-            }
-            else
+
+             }else
             {
-                pictureBox_ticket.Image = bmpTicket;
+
             }
 
+            pictureBox_ticket.Image = bmpTicket;
+            pictureBox_code.Image = bmpWork;
+            pictureBox_QRCode.Image = bmpQRCode;
 
-            
+
+
 
 
 
@@ -166,18 +175,18 @@ namespace TicketScan
 
         private void button6_Click(object sender, EventArgs e)
         {
-            exteactTicketCodeImg = ticketRecognizer.ExtractTicketCodeImage(bmpTicket, ticketType);
-            bmpWork = exteactTicketCodeImg;
-            if (pictureBox_code.Image != null)
-            {
-                pictureBox_code.Image.Dispose();
-                pictureBox_code.Image = null;
-                pictureBox_code.Image = bmpWork;
-            }
-            else
-            {
-                pictureBox_code.Image = bmpWork;
-            }
+            //exteactTicketCodeImg = ticketRecognizer.ExtractTicketCodeImageArea(bmpTicket, ticketType);
+            //bmpWork = exteactTicketCodeImg;
+            //if (pictureBox_code.Image != null)
+            //{
+            //    pictureBox_code.Image.Dispose();
+            //    pictureBox_code.Image = null;
+            //    pictureBox_code.Image = bmpWork;
+            //}
+            //else
+            //{
+            //    pictureBox_code.Image = bmpWork;
+            //}
 
         }
 
@@ -187,22 +196,23 @@ namespace TicketScan
             //if(qrCode != null) pictureBox_QRCode.Image = qrCode;
 
 
-            Bitmap temp = ticketRecognizer.ExtractQRCodeImage(bmpTicket, ticketType);
-
-            if (ticketRecognizer.IsExistQRCode(temp, ticketType))
-            {
-                pictureBox_QRCode.Image = temp;
-            }
-            else
-            {
-                bmpTicket.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                pictureBox_ticket.Image = bmpTicket;
-                Bitmap temp1 = ticketRecognizer.ExtractQRCodeImage(bmpTicket, ticketType);
-                if (ticketRecognizer.IsExistQRCode(temp1, ticketType))
-                {
-                    pictureBox_QRCode.Image = temp1;
-                }
-            }
+            //Bitmap temp = ticketRecognizer.ExtractQRCodeImageArea(bmpTicket, ticketType);
+            //var result = ticketRecognizer.IsExistQRCode(temp, ticketType);
+            //if (result.Item1)
+            //{
+            //    pictureBox_QRCode.Image = temp;
+            //}
+            //else
+            //{
+            //    bmpTicket.RotateFlip(RotateFlipType.Rotate180FlipNone);
+            //    pictureBox_ticket.Image = bmpTicket;
+            //    Bitmap temp1 = ticketRecognizer.ExtractQRCodeImageArea(bmpTicket, ticketType);
+            //    var result2 = ticketRecognizer.IsExistQRCode(temp1, ticketType);
+            //    if (result2.Item1)
+            //    {
+            //        pictureBox_QRCode.Image = temp1;
+            //    }
+            //}
 
         }
 

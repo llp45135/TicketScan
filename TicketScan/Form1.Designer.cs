@@ -347,9 +347,9 @@
             // flowLayoutPanel_codeimgs
             // 
             this.flowLayoutPanel_codeimgs.AutoScroll = true;
-            this.flowLayoutPanel_codeimgs.Location = new System.Drawing.Point(16, 477);
+            this.flowLayoutPanel_codeimgs.Location = new System.Drawing.Point(16, 529);
             this.flowLayoutPanel_codeimgs.Name = "flowLayoutPanel_codeimgs";
-            this.flowLayoutPanel_codeimgs.Size = new System.Drawing.Size(1201, 154);
+            this.flowLayoutPanel_codeimgs.Size = new System.Drawing.Size(1201, 102);
             this.flowLayoutPanel_codeimgs.TabIndex = 33;
             // 
             // button13
@@ -418,6 +418,7 @@
             this.pictureBox_QRCode.Location = new System.Drawing.Point(451, 10);
             this.pictureBox_QRCode.Name = "pictureBox_QRCode";
             this.pictureBox_QRCode.Size = new System.Drawing.Size(203, 152);
+            this.pictureBox_QRCode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox_QRCode.TabIndex = 39;
             this.pictureBox_QRCode.TabStop = false;
             // 
