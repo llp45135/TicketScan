@@ -11,6 +11,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Tesseract;
+using ZXing;
+using ZXing.Common;
+using ZXing.QrCode;
 
 namespace TicketScan
 {
@@ -487,6 +490,81 @@ namespace TicketScan
                     label_result.Text = s;
                 }
 
+            }
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            QRCodeReader reader = new QRCodeReader();
+            //BarcodeReader reader = new BarcodeReader();
+            Result result;
+            try{
+                Bitmap image = (Bitmap)pictureBox_QRCode.Image;
+                //result = reader.Decode(bitmap);
+                LuminanceSource source;
+                source = new BitmapLuminanceSource(image);
+                BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+                result = new MultiFormatReader().decode(bitmap);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw;
+            }
+
+
+            if (result != null)
+            {
+                Console.WriteLine(result.BarcodeFormat.ToString());
+                string instr = result.Text; //显示解析结果  
+
+                if (instr.Length != 144)
+                {
+                    MessageBox.Show(DateTime.Now.ToString() + "  扫描票面二维码出错：\r\n");
+                    return ;
+                }
+                int i = instr.Length;
+                long nowYear = DateTime.Now.Year;
+                StringBuilder outStr = new StringBuilder(117);
+                long returnStatus = UnsecurityDll.uncompress(instr, outStr, nowYear);
+
+                string sb = outStr.ToString();
+                if (sb.Length == 0)
+                {
+                    MessageBox.Show(DateTime.Now.ToString() + "  扫描票面二维码解密出错：\r\n");
+                    return ;
+                }
+                string ticketNo = sb.Substring(0, 7);
+                string fromStationCode = sb.Substring(7, 3);
+                string toStationCode = sb.Substring(10, 3);
+                string seatCode = sb.Substring(29, 4);
+                string trainCodeTmp = sb.Substring(16, 8).Trim();
+                char[] trainLetter = trainCodeTmp.Substring(0, 1).ToCharArray();
+                string trainCode = "";
+                if (Char.IsLetter(trainLetter[0]))    
+                {
+                    trainCode = trainCodeTmp.Substring(0, 1) + Convert.ToInt16(trainCodeTmp.Substring(2)).ToString();
+                }
+                else
+                {
+                    trainCode = Convert.ToInt16(trainCodeTmp).ToString();
+                }
+            
+                int ticketPrice = Convert.ToInt16(sb.Substring(33, 5))/ 10;
+                string trainDate = sb.Substring(38, 8);
+                string officeNo = sb.Substring(50, 7);
+                int windowNo = Convert.ToInt16(sb.Substring(57, 3));
+                string statisticsDate = sb.Substring(60, 8);
+                string cardType = sb.Substring(68, 2);
+                string id = sb.Substring(72, 12) +"****"+ sb.Substring(86, 4);
+                string name = sb.Substring(90, 18).Trim();
+
+                MessageBox.Show(DateTime.Now.ToString() + "**姓名：" + name + ";身份证号：" + id + ";票号：" + ticketNo);
+            
+            }
+            else
+            {
+                MessageBox.Show(DateTime.Now.ToString() + "**未识别！！" );
             }
         }
     }
