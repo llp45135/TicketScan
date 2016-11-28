@@ -37,7 +37,7 @@ namespace TicketScan
             extractQRCodeSeqForBlueTicket.Add(new GrayscaleBT709());
             extractQRCodeSeqForBlueTicket.Add(new DifferenceEdgeDetector());
             extractQRCodeSeqForBlueTicket.Add(new SISThreshold());
-            extractQRCodeSeqForBlueTicket.Add(new Dilatation());
+            extractQRCodeSeqForBlueTicket.Add(new Closing());
 
             qrReturnSeq.Add(new GrayscaleBT709());
             qrReturnSeq.Add(new Blur());

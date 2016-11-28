@@ -46,8 +46,8 @@ namespace TicketScan
         public static double RED_CODE_CHAR_OFFSET_RATIO = 9.0 / RED_TICKET_WIDTH;
 
         public static double RED_QRCODE_X_COPR_RATIO = 470.0 / RED_TICKET_WIDTH;
-        public static double RED_QRCODE_Y_COPR_RATIO = 270.0 / RED_TICKET_HEIGHT;
-        public static double RED_QRCODE_W_COPR_RATIO = 190.0 / RED_TICKET_WIDTH;
+        public static double RED_QRCODE_Y_COPR_RATIO = 260.0 / RED_TICKET_HEIGHT;
+        public static double RED_QRCODE_W_COPR_RATIO = 200.0 / RED_TICKET_WIDTH;
         public static double RED_QRCODE_H_COPR_RATIO = 200.0 / RED_TICKET_HEIGHT;
 
         public static int Normalize_QRCodeWidth = 300;
