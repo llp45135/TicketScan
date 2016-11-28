@@ -28,10 +28,10 @@ namespace TicketScan
         public static double BLUE_CODE_CHAR_HEIGHT_RATIO = 24.0 / BLUE_TICKET_HEIGHT;
         public static double BLUE_CODE_CHAR_OFFSET_RATIO = 3.0 / BLUE_TICKET_WIDTH;
 
-        public static double BLUE_QRCODE_X_COPR_RATIO = 520.0 / BLUE_TICKET_WIDTH;
-        public static double BLUE_QRCODE_Y_COPR_RATIO = 270.0 / BLUE_TICKET_HEIGHT;
-        public static double BLUE_QRCODE_W_COPR_RATIO = 210.0 / BLUE_TICKET_WIDTH;
-        public static double BLUE_QRCODE_H_COPR_RATIO = 160.0 / BLUE_TICKET_HEIGHT;
+        public static double BLUE_QRCODE_X_COPR_RATIO = 540.0 / BLUE_TICKET_WIDTH;
+        public static double BLUE_QRCODE_Y_COPR_RATIO = 255.0 / BLUE_TICKET_HEIGHT;
+        public static double BLUE_QRCODE_W_COPR_RATIO = 230.0 / BLUE_TICKET_WIDTH;
+        public static double BLUE_QRCODE_H_COPR_RATIO = 180.0 / BLUE_TICKET_HEIGHT;
 
 
         public static int RED_TICKET_WIDTH = 710;
@@ -45,10 +45,13 @@ namespace TicketScan
         public static double RED_CODE_CHAR_HEIGHT_RATIO = 25.0 / RED_TICKET_HEIGHT;
         public static double RED_CODE_CHAR_OFFSET_RATIO = 9.0 / RED_TICKET_WIDTH;
 
-        public static double RED_QRCODE_X_COPR_RATIO = 490.0 / RED_TICKET_WIDTH;
+        public static double RED_QRCODE_X_COPR_RATIO = 470.0 / RED_TICKET_WIDTH;
         public static double RED_QRCODE_Y_COPR_RATIO = 270.0 / RED_TICKET_HEIGHT;
-        public static double RED_QRCODE_W_COPR_RATIO = 180.0 / RED_TICKET_WIDTH;
+        public static double RED_QRCODE_W_COPR_RATIO = 190.0 / RED_TICKET_WIDTH;
         public static double RED_QRCODE_H_COPR_RATIO = 200.0 / RED_TICKET_HEIGHT;
+
+        public static int Normalize_QRCodeWidth = 300;
+        public static int Normalize_QRCodeHeight = 300;
 
 
 

@@ -34,20 +34,22 @@ namespace TicketScan
         private void button1_Click(object sender, EventArgs e)
         {
 
+            label_result.Text = "";
+            pictureBox_work.Image = null;
             openFileDialog.ShowDialog();
-
 
         }
 
         private void openFileDialog_FileOk(object sender, CancelEventArgs e)
         {
-
+            label_21Code.Text = "";
+            label_result.Text = "";
 
             bmpTicket = AForge.Imaging.Image.FromFile(openFileDialog.FileName);
+            bmpTicket = bmpTicket.Clone(new Rectangle(0, 0, bmpTicket.Width, bmpTicket.Height), PixelFormat.Format24bppRgb);
 
             //bmpTicket = ImageProcess.FilterBalckBlob(bmpTicket);
             //bmpTicket = new Grayscale(0.2125, 0.7154, 0.0721).Apply(bmpTicket);
-            //bmpTicket = bmpTicket.Clone(new Rectangle(0, 0, bmpTicket.Width, bmpTicket.Height), PixelFormat.Format24bppRgb);
             //ImageProcess.Binarizate(bmpTicket);
             //bmpTicket = ImageProcess.CutBlankEdge(bmpTicket);
 
@@ -74,44 +76,80 @@ namespace TicketScan
             bmpWork = result.Item3;
             bmpTicket = result.Item4;
 
-            if (result.Item1 == Config.Is_Detected_QRCode)
-            {
-
-             }else
-            {
-
-            }
-
             pictureBox_ticket.Image = bmpTicket;
             pictureBox_code.Image = bmpWork;
+
+            ResizeBilinear resizeBilinear = new ResizeBilinear(Config.Normalize_QRCodeWidth, Config.Normalize_QRCodeHeight);
+            bmpQRCode = resizeBilinear.Apply(bmpQRCode);
             pictureBox_QRCode.Image = bmpQRCode;
 
 
-
-
-
-
-
-            //bmpSource = AForge.Imaging.Image.FromFile(openFileDialog.FileName);
-
-            //pictureBox_source.Image = bmpSource;
-            if (pictureBox_work1.Image != null)
+            if (result.Item1 == Config.Is_Detected_QRCode)
             {
-                pictureBox_work1.Image.Dispose();
-                pictureBox_work1.Image = null;
+                if (bmpQRCode != null)
+                {
+                    label_result.Text = QRCode.DecodeByZXing(bmpQRCode);
+                    if (label_result.Text.Equals(""))
+                    {
+                        Console.WriteLine("ZXing decode failed! ");
+                        label_result.Text = QRCode.DecodeByTh(bmpQRCode);
+
+                    }
+                    if (label_result.Text.Equals(""))
+                    {
+
+
+                        bmpWork = ticketRecognizer.GetTicketCodeImgs(bmpWork, ticketType);
+                        pictureBox_work.Image = bmpWork;
+
+                        using (var engine = new TesseractEngine(@"tessdata", "TicketCode", EngineMode.TesseractOnly))
+                        {
+                            //engine.SetVariable("tessedit_char_whitelist", "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+                            //engine.SetVariable("tessedit_unrej_any_wd", true);
+                            engine.DefaultPageSegMode = PageSegMode.SingleBlock;
+                            using (var page = engine.Process(bmpWork, PageSegMode.SingleBlock))
+                            {
+                                String s = page.GetText();
+                                Console.WriteLine(s);
+                                label_21Code.Text = s;
+                            }
+
+                        }
+                    }
+                }
+                else
+                {
+                    label_result.Text = "";
+                }
             }
-            if (pictureBox_work2.Image != null)
+            else
             {
-                pictureBox_work2.Image.Dispose();
-                pictureBox_work2.Image = null;
+                bmpWork = ticketRecognizer.GetTicketCodeImgs(bmpWork, ticketType);
+                pictureBox_work.Image = bmpWork;
+
+                using (var engine = new TesseractEngine(@"tessdata", "TicketCode", EngineMode.TesseractOnly))
+                {
+                    //engine.SetVariable("tessedit_char_whitelist", "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+                    //engine.SetVariable("tessedit_unrej_any_wd", true);
+                    engine.DefaultPageSegMode = PageSegMode.SingleBlock;
+                    using (var page = engine.Process(bmpWork, PageSegMode.SingleBlock))
+                    {
+                        String s = page.GetText();
+                        Console.WriteLine(s);
+                        label_21Code.Text = s;
+                    }
+
+                }
 
             }
-            if (pictureBox_work3.Image != null)
-            {
-                pictureBox_work3.Image.Dispose();
-                pictureBox_work3.Image = null;
 
-            }
+
+
+
+
+
+
+
 
 
 
@@ -123,7 +161,7 @@ namespace TicketScan
             bmpWork = bmpWork.Clone(new Rectangle(0, 0, bmpWork.Width, bmpWork.Height), PixelFormat.Format24bppRgb);
 
             //            bmpWork = new Grayscale(0.3, 0.59, 0.11).Apply(bmpSource);
-            pictureBox_work1.Image = bmpWork;
+            pictureBox_work.Image = bmpWork;
 
 
         }
@@ -133,7 +171,7 @@ namespace TicketScan
 
             ImageProcess.Binarizate(bmpWork);
             bmpWork = ImageProcess.CutBlankEdge(bmpWork);
-            pictureBox_work2.Image = bmpWork;
+            pictureBox_work.Image = bmpWork;
 
         }
 
@@ -226,19 +264,19 @@ namespace TicketScan
         {
             bmpWork = new Grayscale(0.2125, 0.7154, 0.0721).Apply(exteactTicketNoImg);
             bmpWork = bmpWork.Clone(new Rectangle(0, 0, exteactTicketNoImg.Width, exteactTicketNoImg.Height), PixelFormat.Format24bppRgb);
-            pictureBox_work1.Image = bmpWork;
+            pictureBox_work.Image = bmpWork;
 
 
             ImageProcess.FilterBackground(bmpWork);
-            pictureBox_work1.Image = bmpWork;
+            pictureBox_work.Image = bmpWork;
 
 
             ImageProcess.FilterDisturb(bmpWork);
-            pictureBox_work2.Image = bmpWork;
+            pictureBox_work.Image = bmpWork;
 
             ImageProcess.Binarizate(bmpWork);
             bmpWork = ImageProcess.CutBlankEdge(bmpWork);
-            pictureBox_work3.Image = bmpWork;
+            pictureBox_work.Image = bmpWork;
 
             splitBmpList = ImageProcess.Split(bmpWork, 7);
             PictureBox[] pxs = { pictureBox_slpit1, pictureBox_slpit2, pictureBox_slpit3, pictureBox_slpit4, pictureBox_slpit5, pictureBox_slpit6, pictureBox_slpit7 };
@@ -434,27 +472,30 @@ namespace TicketScan
         IList<Bitmap> codeImgList = new List<Bitmap>();
         private void button12_Click(object sender, EventArgs e)
         {
-            //codeImgList = ImageProcess.ExtractTicketCode(bmpWork,bmpTicket.Width,bmpTicket.Height);
-            //            codeImgList = ts.SplitTicketCodeByDefinedWidth(bmpWork, ticketType);
-            codeImgList = ts.SplitTicketCode(bmpWork);
-            flowLayoutPanel_codeimgs.Controls.Clear();
-            foreach (Bitmap img in codeImgList)
-            {
-                PictureBox pb = new PictureBox();
-                pb.Image = img;
-                flowLayoutPanel_codeimgs.Controls.Add(pb);
-            }
+            ////codeImgList = ImageProcess.ExtractTicketCode(bmpWork,bmpTicket.Width,bmpTicket.Height);
+            ////            codeImgList = ts.SplitTicketCodeByDefinedWidth(bmpWork, ticketType);
+            //codeImgList = ts.SplitTicketCode(bmpWork);
+            //flowLayoutPanel_codeimgs.Controls.Clear();
+            //foreach (Bitmap img in codeImgList)
+            //{
+            //    PictureBox pb = new PictureBox();
+            //    pb.Image = img;
+            //    flowLayoutPanel_codeimgs.Controls.Add(pb);
+            //}
 
         }
 
         private void button13_Click(object sender, EventArgs e)
         {
-            if (codeImgList == null || codeImgList.Count != 21)
+            if (bmpQRCode != null)
+            {
+                label_result.Text = QRCode.DecodeByTh(bmpQRCode);
+            }
+            else
             {
                 label_result.Text = "";
-                return;
             }
-            label_result.Text = OCRTicketCode(codeImgList);
+
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -470,10 +511,10 @@ namespace TicketScan
         private void button14_Click(object sender, EventArgs e)
         {
             bmpWork = ticketRecognizer.GetTicketCodeImgs(bmpWork, ticketType);
+            pictureBox_work.Image = bmpWork;
 
             //bmpWork = ticketRecognizer.FilterTicketCodeWithHeight(bmpWork, ticketType);
             //bmpWork = ts.CutTicketCodeEdge(bmpWork, ticketType);
-            pictureBox_work3.Image = bmpWork;
         }
 
         private void button15_Click(object sender, EventArgs e)
@@ -492,10 +533,33 @@ namespace TicketScan
 
             }
         }
+
+        private void button_saveQRCode_Click(object sender, EventArgs e)
+        {
+            if (bmpQRCode != null)
+            {
+                System.DateTime currentTime = System.DateTime.Now;
+                //                String path = Environment.CurrentDirectory + "\\QRCode\\";
+                String path = Environment.CurrentDirectory + "\\QRCode\\";
+                DirectoryInfo df = Directory.CreateDirectory(path);
+                Bitmap b = bmpQRCode.Clone(new Rectangle(0, 0, bmpQRCode.Width, bmpQRCode.Height), PixelFormat.Format24bppRgb);
+
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.InitialDirectory = path;
+                saveFileDialog1.Filter = "*.bmp|*.jpg";
+                saveFileDialog1.Title = "保存图像";
+                saveFileDialog1.ShowDialog();
+                if (saveFileDialog1.FileName != "")
+                {
+                    string temp = saveFileDialog1.FileName;
+                    b.Save(temp, System.Drawing.Imaging.ImageFormat.Bmp);
+                }
+            }
+        }
     }
 }
 
- 
+
 
 
 

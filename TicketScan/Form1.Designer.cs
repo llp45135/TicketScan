@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox_source = new System.Windows.Forms.PictureBox();
-            this.pictureBox_work1 = new System.Windows.Forms.PictureBox();
             this.label_result = new System.Windows.Forms.Label();
             this.pictureBox_slpit1 = new System.Windows.Forms.PictureBox();
             this.pictureBox_slpit2 = new System.Windows.Forms.PictureBox();
@@ -38,7 +36,6 @@
             this.pictureBox_slpit5 = new System.Windows.Forms.PictureBox();
             this.pictureBox_slpit6 = new System.Windows.Forms.PictureBox();
             this.pictureBox_slpit7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox_work2 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -46,7 +43,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.pictureBox_work3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_work = new System.Windows.Forms.PictureBox();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -55,15 +52,15 @@
             this.button12 = new System.Windows.Forms.Button();
             this.pictureBox_ticket = new System.Windows.Forms.PictureBox();
             this.pictureBox_code = new System.Windows.Forms.PictureBox();
-            this.flowLayoutPanel_codeimgs = new System.Windows.Forms.FlowLayoutPanel();
             this.button13 = new System.Windows.Forms.Button();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.button14 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
             this.pictureBox_QRCode = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_source)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_work1)).BeginInit();
+            this.pictureBox_QRCode_bin = new System.Windows.Forms.PictureBox();
+            this.button_saveQRCode = new System.Windows.Forms.Button();
+            this.label_21Code = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_slpit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_slpit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_slpit3)).BeginInit();
@@ -71,36 +68,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_slpit5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_slpit6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_slpit7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_work2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_work3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_work)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ticket)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_code)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_QRCode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_QRCode_bin)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox_source
-            // 
-            this.pictureBox_source.Location = new System.Drawing.Point(451, 10);
-            this.pictureBox_source.Name = "pictureBox_source";
-            this.pictureBox_source.Size = new System.Drawing.Size(439, 124);
-            this.pictureBox_source.TabIndex = 0;
-            this.pictureBox_source.TabStop = false;
-            // 
-            // pictureBox_work1
-            // 
-            this.pictureBox_work1.Location = new System.Drawing.Point(451, 122);
-            this.pictureBox_work1.Name = "pictureBox_work1";
-            this.pictureBox_work1.Size = new System.Drawing.Size(439, 110);
-            this.pictureBox_work1.TabIndex = 1;
-            this.pictureBox_work1.TabStop = false;
             // 
             // label_result
             // 
+            this.label_result.AutoEllipsis = true;
             this.label_result.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.label_result.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_result.Location = new System.Drawing.Point(16, 114);
+            this.label_result.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_result.Location = new System.Drawing.Point(11, 63);
             this.label_result.Name = "label_result";
-            this.label_result.Size = new System.Drawing.Size(360, 32);
+            this.label_result.Size = new System.Drawing.Size(393, 90);
             this.label_result.TabIndex = 2;
             // 
             // pictureBox_slpit1
@@ -172,14 +154,6 @@
             this.pictureBox_slpit7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox_slpit7.TabIndex = 9;
             this.pictureBox_slpit7.TabStop = false;
-            // 
-            // pictureBox_work2
-            // 
-            this.pictureBox_work2.Location = new System.Drawing.Point(451, 221);
-            this.pictureBox_work2.Name = "pictureBox_work2";
-            this.pictureBox_work2.Size = new System.Drawing.Size(439, 114);
-            this.pictureBox_work2.TabIndex = 10;
-            this.pictureBox_work2.TabStop = false;
             // 
             // button1
             // 
@@ -258,13 +232,13 @@
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
-            // pictureBox_work3
+            // pictureBox_work
             // 
-            this.pictureBox_work3.Location = new System.Drawing.Point(451, 324);
-            this.pictureBox_work3.Name = "pictureBox_work3";
-            this.pictureBox_work3.Size = new System.Drawing.Size(439, 114);
-            this.pictureBox_work3.TabIndex = 18;
-            this.pictureBox_work3.TabStop = false;
+            this.pictureBox_work.Location = new System.Drawing.Point(431, 410);
+            this.pictureBox_work.Name = "pictureBox_work";
+            this.pictureBox_work.Size = new System.Drawing.Size(439, 114);
+            this.pictureBox_work.TabIndex = 18;
+            this.pictureBox_work.TabStop = false;
             // 
             // button8
             // 
@@ -328,29 +302,21 @@
             // 
             // pictureBox_ticket
             // 
-            this.pictureBox_ticket.Location = new System.Drawing.Point(1096, 3);
+            this.pictureBox_ticket.Location = new System.Drawing.Point(1102, -10);
             this.pictureBox_ticket.Name = "pictureBox_ticket";
-            this.pictureBox_ticket.Size = new System.Drawing.Size(469, 314);
+            this.pictureBox_ticket.Size = new System.Drawing.Size(790, 374);
             this.pictureBox_ticket.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox_ticket.TabIndex = 31;
             this.pictureBox_ticket.TabStop = false;
             // 
             // pictureBox_code
             // 
-            this.pictureBox_code.Location = new System.Drawing.Point(16, 410);
+            this.pictureBox_code.Location = new System.Drawing.Point(15, 473);
             this.pictureBox_code.Name = "pictureBox_code";
             this.pictureBox_code.Size = new System.Drawing.Size(375, 51);
             this.pictureBox_code.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox_code.TabIndex = 32;
             this.pictureBox_code.TabStop = false;
-            // 
-            // flowLayoutPanel_codeimgs
-            // 
-            this.flowLayoutPanel_codeimgs.AutoScroll = true;
-            this.flowLayoutPanel_codeimgs.Location = new System.Drawing.Point(16, 529);
-            this.flowLayoutPanel_codeimgs.Name = "flowLayoutPanel_codeimgs";
-            this.flowLayoutPanel_codeimgs.Size = new System.Drawing.Size(1201, 102);
-            this.flowLayoutPanel_codeimgs.TabIndex = 33;
             // 
             // button13
             // 
@@ -359,7 +325,7 @@
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(75, 32);
             this.button13.TabIndex = 34;
-            this.button13.Text = "识别21位码";
+            this.button13.Text = "读二维码";
             this.button13.UseVisualStyleBackColor = true;
             this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
@@ -415,25 +381,56 @@
             // 
             // pictureBox_QRCode
             // 
-            this.pictureBox_QRCode.Location = new System.Drawing.Point(451, 10);
+            this.pictureBox_QRCode.Location = new System.Drawing.Point(440, 12);
             this.pictureBox_QRCode.Name = "pictureBox_QRCode";
-            this.pictureBox_QRCode.Size = new System.Drawing.Size(203, 152);
+            this.pictureBox_QRCode.Size = new System.Drawing.Size(325, 270);
             this.pictureBox_QRCode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox_QRCode.TabIndex = 39;
             this.pictureBox_QRCode.TabStop = false;
+            // 
+            // pictureBox_QRCode_bin
+            // 
+            this.pictureBox_QRCode_bin.Location = new System.Drawing.Point(771, 12);
+            this.pictureBox_QRCode_bin.Name = "pictureBox_QRCode_bin";
+            this.pictureBox_QRCode_bin.Size = new System.Drawing.Size(325, 270);
+            this.pictureBox_QRCode_bin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox_QRCode_bin.TabIndex = 40;
+            this.pictureBox_QRCode_bin.TabStop = false;
+            // 
+            // button_saveQRCode
+            // 
+            this.button_saveQRCode.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_saveQRCode.Location = new System.Drawing.Point(178, 358);
+            this.button_saveQRCode.Name = "button_saveQRCode";
+            this.button_saveQRCode.Size = new System.Drawing.Size(156, 32);
+            this.button_saveQRCode.TabIndex = 41;
+            this.button_saveQRCode.Text = "保存二维码";
+            this.button_saveQRCode.UseVisualStyleBackColor = true;
+            this.button_saveQRCode.Click += new System.EventHandler(this.button_saveQRCode_Click);
+            // 
+            // label_21Code
+            // 
+            this.label_21Code.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.label_21Code.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_21Code.Location = new System.Drawing.Point(19, 393);
+            this.label_21Code.Name = "label_21Code";
+            this.label_21Code.Size = new System.Drawing.Size(385, 61);
+            this.label_21Code.TabIndex = 42;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1577, 660);
+            this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.label_21Code);
+            this.Controls.Add(this.button_saveQRCode);
+            this.Controls.Add(this.pictureBox_QRCode_bin);
             this.Controls.Add(this.pictureBox_QRCode);
             this.Controls.Add(this.button15);
             this.Controls.Add(this.button14);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.button13);
-            this.Controls.Add(this.flowLayoutPanel_codeimgs);
             this.Controls.Add(this.pictureBox_code);
             this.Controls.Add(this.pictureBox_ticket);
             this.Controls.Add(this.button12);
@@ -441,7 +438,7 @@
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
-            this.Controls.Add(this.pictureBox_work3);
+            this.Controls.Add(this.pictureBox_work);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
@@ -449,7 +446,6 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.pictureBox_work2);
             this.Controls.Add(this.pictureBox_slpit7);
             this.Controls.Add(this.pictureBox_slpit6);
             this.Controls.Add(this.pictureBox_slpit5);
@@ -458,12 +454,8 @@
             this.Controls.Add(this.pictureBox_slpit2);
             this.Controls.Add(this.pictureBox_slpit1);
             this.Controls.Add(this.label_result);
-            this.Controls.Add(this.pictureBox_work1);
-            this.Controls.Add(this.pictureBox_source);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_source)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_work1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_slpit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_slpit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_slpit3)).EndInit();
@@ -471,20 +463,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_slpit5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_slpit6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_slpit7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_work2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_work3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_work)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ticket)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_code)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_QRCode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_QRCode_bin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox_source;
-        private System.Windows.Forms.PictureBox pictureBox_work1;
         private System.Windows.Forms.Label label_result;
         private System.Windows.Forms.PictureBox pictureBox_slpit1;
         private System.Windows.Forms.PictureBox pictureBox_slpit2;
@@ -493,7 +482,6 @@
         private System.Windows.Forms.PictureBox pictureBox_slpit5;
         private System.Windows.Forms.PictureBox pictureBox_slpit6;
         private System.Windows.Forms.PictureBox pictureBox_slpit7;
-        private System.Windows.Forms.PictureBox pictureBox_work2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
@@ -501,7 +489,7 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.PictureBox pictureBox_work3;
+        private System.Windows.Forms.PictureBox pictureBox_work;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
@@ -510,13 +498,15 @@
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.PictureBox pictureBox_ticket;
         private System.Windows.Forms.PictureBox pictureBox_code;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel_codeimgs;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.PictureBox pictureBox_QRCode;
+        private System.Windows.Forms.PictureBox pictureBox_QRCode_bin;
+        private System.Windows.Forms.Button button_saveQRCode;
+        private System.Windows.Forms.Label label_21Code;
     }
 }
 
