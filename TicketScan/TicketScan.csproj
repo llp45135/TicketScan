@@ -86,6 +86,7 @@
     <Compile Include="QRCode.cs" />
     <Compile Include="TicketRecognizer.cs" />
     <Compile Include="TicketScan.cs" />
+    <Compile Include="UnsecurityDll.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
