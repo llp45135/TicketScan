@@ -57,7 +57,7 @@ namespace TicketScan
 
             }catch(Exception e)
             {
-                Console.WriteLine(e);
+                //Console.WriteLine(e);
             }
             return result;
 

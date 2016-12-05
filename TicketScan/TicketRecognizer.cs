@@ -37,7 +37,7 @@ namespace TicketScan
             extractQRCodeSeqForBlueTicket.Add(new GrayscaleBT709());
             extractQRCodeSeqForBlueTicket.Add(new DifferenceEdgeDetector());
             extractQRCodeSeqForBlueTicket.Add(new SISThreshold());
-            extractQRCodeSeqForBlueTicket.Add(new Closing());
+            extractQRCodeSeqForBlueTicket.Add(new Dilatation());
 
             qrReturnSeq.Add(new GrayscaleBT709());
             qrReturnSeq.Add(new Blur());
@@ -229,50 +229,111 @@ namespace TicketScan
             
 
             
-            //Bitmap temp = new GrayscaleBT709().Apply(source);
-            //DifferenceEdgeDetector diffFileter = new DifferenceEdgeDetector();
-            //var dff = diffFileter.FormatTranslations;
-            //temp = new DifferenceEdgeDetector().Apply(temp);
-            //Threshold tFilter = new Threshold();
-            //tFilter.ThresholdValue = 128;
-            //temp = tFilter.Apply(temp);
-            //Dilatation dFilter = new Dilatation();
-            //temp = dFilter.Apply(temp);
-            //temp = dFilter.Apply(temp);
-            //temp = dFilter.Apply(temp);
 
-            //BlobCounter blobCounter = new BlobCounter(temp); //把图片上的联通物体都分离开来
-            //Blob[] blobs = blobCounter.GetObjects(temp, false);
-            //var s = from o in blobs  orderby o.Rectangle.Height* o.Rectangle.Width descending select o;
-
-
-            //foreach (Blob b in s.ToList<Blob>())
-            //{
-            //    if (b.Image.Height >= 100 && b.Image.Width >= 100)
-            //    {
-            //        Crop c = new Crop(b.Rectangle);
-            //        Bitmap qrcode = c.Apply(source);
-            //        return Tuple.Create<bool, Rectangle,Bitmap>(true, b.Rectangle, qrcode);
-
-            //    }
-            //}
 
 
             ExtractBiggestBlob ebb = new ExtractBiggestBlob();
             Bitmap qr = ebb.Apply(temp);
             if(qr.Width >=100 && qr.Height >= 100)
             {
-//                Rectangle rect = new Rectangle(ebb.BlobPosition.X,ebb.BlobPosition.Y,qr.Width,qr.Height);
-                Rectangle rect = new Rectangle(ebb.BlobPosition.X -5, ebb.BlobPosition.Y -5, qr.Width + 10, qr.Height + 10);
-                Crop c = new Crop(rect);
+                //                Rectangle rect = new Rectangle(ebb.BlobPosition.X,ebb.BlobPosition.Y,qr.Width,qr.Height);
+                //                Rectangle rect = new Rectangle(ebb.BlobPosition.X , ebb.BlobPosition.Y , qr.Width , qr.Height );
+                Rectangle rect = cutQRCodeArea(qr);
+                Rectangle rectCut = new Rectangle();
+                rectCut.X = ebb.BlobPosition.X + rect.X -3;
+                rectCut.Y = ebb.BlobPosition.Y + rect.Y -3;
+                rectCut.Width = rect.Width +6;
+                rectCut.Height = rect.Height +6;
+
+                Crop c = new Crop(rectCut);
                 Bitmap qrcode = c.Apply(source);
-                return Tuple.Create<bool, Rectangle, Bitmap>(true, rect, qrcode);
+                return Tuple.Create<bool, Rectangle, Bitmap>(true, rectCut, qrcode);
 
             }
 
 
 
             return Tuple.Create<bool, Rectangle,Bitmap>(false,new Rectangle(),null);
+
+        }
+
+
+        private Rectangle cutQRCodeArea(Bitmap img)
+        {
+            int leftx = 0, lefty = 0, rightx = 0,  lefty1 = 0;
+            int whitePXCount = 0;
+            for (int x = 0; x < img.Width; x++)
+            {
+                for(int y = 0; y < img.Height; y++)
+                {
+                    if (img.GetPixel(x, y).ToArgb() == Color.White.ToArgb())
+                    {
+                        whitePXCount++;
+                    }
+                }
+                if(whitePXCount > img.Height * 0.7)
+                {
+                    leftx = x;
+                    break;
+                }
+                whitePXCount = 0;
+            }
+            whitePXCount = 0;
+            for (int x = img.Width -1; x >0; x--)
+            {
+                for (int y = 0; y < img.Height; y++)
+                {
+                    if (img.GetPixel(x, y).ToArgb() == Color.White.ToArgb())
+                    {
+                        whitePXCount++;
+                    }
+                }
+                if (whitePXCount > img.Height * 0.5)
+                {
+                    rightx = x;
+                    break;
+                }
+                whitePXCount = 0;
+            }
+
+
+            whitePXCount = 0;
+            for (int y = 0; y <img.Height; y++)
+            {
+                for (int x = 0; x < img.Width; x++)
+                {
+                    if (img.GetPixel(x, y).ToArgb() == Color.White.ToArgb())
+                    {
+                        whitePXCount++;
+                    }
+                }
+                if (whitePXCount > img.Height * 0.7)
+                {
+                    lefty = y;
+                    break;
+                }
+                whitePXCount = 0;
+            }
+
+            whitePXCount = 0;
+            for (int y = img.Height -1; y >0; y--)
+            {
+                for (int x = 0; x < img.Width; x++)
+                {
+                    if (img.GetPixel(x, y).ToArgb() == Color.White.ToArgb())
+                    {
+                        whitePXCount++;
+                    }
+                }
+                if (whitePXCount > img.Height * 0.5)
+                {
+                    lefty1 = y;
+                    break;
+                }
+                whitePXCount = 0;
+            }
+
+            return new Rectangle(leftx, lefty, rightx - leftx, lefty1 - lefty);
 
         }
 

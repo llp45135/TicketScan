@@ -28,7 +28,7 @@ namespace TicketScan
         public static double BLUE_CODE_CHAR_HEIGHT_RATIO = 24.0 / BLUE_TICKET_HEIGHT;
         public static double BLUE_CODE_CHAR_OFFSET_RATIO = 3.0 / BLUE_TICKET_WIDTH;
 
-        public static double BLUE_QRCODE_X_COPR_RATIO = 540.0 / BLUE_TICKET_WIDTH;
+        public static double BLUE_QRCODE_X_COPR_RATIO = 535.0 / BLUE_TICKET_WIDTH;
         public static double BLUE_QRCODE_Y_COPR_RATIO = 255.0 / BLUE_TICKET_HEIGHT;
         public static double BLUE_QRCODE_W_COPR_RATIO = 230.0 / BLUE_TICKET_WIDTH;
         public static double BLUE_QRCODE_H_COPR_RATIO = 180.0 / BLUE_TICKET_HEIGHT;

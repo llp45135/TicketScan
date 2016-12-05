@@ -88,16 +88,19 @@ namespace TicketScan
             {
                 if (bmpQRCode != null)
                 {
-                    label_result.Text = QRCode.DecodeByZXing(bmpQRCode);
-                    if (label_result.Text.Equals(""))
+                    label_result.Text = QRCode.DecodeByTh(bmpQRCode);
+                    if (label_result.Text.Equals("") || label_result.Text.Length != 147)
                     {
-                        Console.WriteLine("ZXing decode failed! ");
-                        label_result.Text = QRCode.DecodeByTh(bmpQRCode);
+                        Console.WriteLine("TH decode failed! ");
+                        label_result.Text = QRCode.DecodeByZXing(bmpQRCode);
 
+                    }else
+                    {
+                        Console.WriteLine("TH decode Success! ");
                     }
                     if (label_result.Text.Equals("") || label_result.Text.Length != 144)
                     {
-
+                        Console.WriteLine("ZXing decode failed! ");
 
                         bmpWork = ticketRecognizer.GetTicketCodeImgs(bmpWork, ticketType);
                         pictureBox_work.Image = bmpWork;
@@ -113,8 +116,10 @@ namespace TicketScan
                                 Console.WriteLine(s);
                                 label_21Code.Text = s;
                             }
-
                         }
+                    }else
+                    {
+                        Console.WriteLine("TH decode Success! ");
                     }
                 }
                 else
